@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Flop</title>
+</head>
+<body>
+	<div class="flop"></div>
+	<div id="flop"></div>
+</body>
+<script src="./flop.js"></script>
+<script>	
+	window.onload = function(){	
+		var option = {
+			number:73456, 
+			el:'.flop',
+			style:{
+				height:'80px',
+				width:50,
+				fontSize: 60,
+			}
+		}
+		var option1 = {
+			number:7653456, 
+			el:'#flop',	
+			duration:0.5,	
+			len:9,
+			comma:true,
+			style:{
+				height:'180px',
+				width:100,
+				backgroundColor:'red',				
+				color:'#fff'
+			}
+		}
+		var a = new Flop(option);		
+		var b = new Flop(option1);		
+		setTimeout(function(){
+			b.updateNumber(9663756);
+		},3000)
+		setTimeout(function(){
+			b.updateNumber(96637560);
+		},5000)
+	}
+</script>
+</html>
