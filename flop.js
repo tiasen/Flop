@@ -43,7 +43,6 @@
 				arr.push(temp);
 				newNum = parseInt(newNum/10);
 			}
-			console.log(arr)
 			for(var i = 0; i < arr.length;i++){
 				this.animate(len - 1 - i,arr[i]);
 			}
@@ -76,12 +75,13 @@
 		var width = this.option.style.width.toString().replace(/px/,'');
 		var height = this.option.style.height.toString().replace(/px/,'');
 		var fontSize = this.option.style.fontSize ? this.option.style.fontSize.toString().replace(/px/,'') : parseInt(height)*0.8;
-		var backgroundColor = this.option.style.backgroundColor ? this.option.style.backgroundColor : '#2196f3';
-		var color = this.option.style.color ? this.option.style.color : '#fff';
+		var backgroundColor = this.option.style.backgroundColor || '#2196f3';
+		var color = this.option.style.color || '#fff';
+		var fontFamily = this.option.style.fontFamily || '"Microsoft YaHei",Consolas';
 		var el = document.createElement('div');
 		el.className = 'flopBox';
-		el.setAttribute('data-key',index)
-		el.style.cssText = 'width:'+width+'px;height:'+ height +'px;background:'+ backgroundColor +';border-radius:5px;overflow:hidden;float:left;margin:0 5px;font-family:"Microsoft YaHei",Consolas;text-align:center;line-height:'+height+'px;color:' + color + ';font-size:' + fontSize + 'px';
+		el.setAttribute('data-key',index);
+		el.style.cssText = 'width:'+width+'px;height:'+ height +'px;background:'+ backgroundColor +';border-radius:5px;overflow:hidden;float:left;margin:0 5px;font-family:'+fontFamily+';text-align:center;line-height:'+height+'px;color:' + color + ';font-size:' + fontSize + 'px';
 		var numboxDiv = document.createElement('div');
 		// numboxDiv.style.cssText = 'position:absolute;left:0;top:'+ (-9*height)+'px;'transition:all '+duration+'s easy-in-out;-ms-transition:all '+duration+'s easy-in-out;-webkit-transition:all '+duration+'s easy-in-out;-moz-transition:all '+duration+'s easy-in-out;
 		numboxDiv.className = 'numbox';
@@ -97,6 +97,7 @@
 		return 	el;
 	}
 	Flop.prototype.createDOMGroup = function(){
+        var fontFamily = this.option.style.fontFamily || '"Microsoft YaHei",Consolas';
 		var num = parseInt(this.option.number);
 		var numlen = num.toString().length;
 		var len = this.option.len || numlen;
@@ -112,7 +113,7 @@
 					span.appendChild(text);
 					el.insertBefore(span,el.firstChild)
 				}
-			el.style.cssText = 'overflow:hidden;display:inline-block;font-family:"Microsoft YaHei",Consolas;';
+			el.style.cssText = 'overflow:hidden;display:inline-block;font-family:' + fontFamily;
 			el.insertBefore(this.createDOM(i),el.firstChild)
 		}
 	}
